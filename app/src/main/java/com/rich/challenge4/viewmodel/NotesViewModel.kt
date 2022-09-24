@@ -12,7 +12,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class NotesViewModel(app:Application) : AndroidViewModel(app) {
-    lateinit var allNotes : MutableLiveData<List<Notes>?>
+    var allNotes : MutableLiveData<List<Notes>?>
 
     init {
         allNotes = MutableLiveData()

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.rich.challenge4.R
+import com.rich.challenge4.database.User
 import com.rich.challenge4.databinding.FragmentLoginBinding
 import com.rich.challenge4.viewmodel.UserViewModel
 
@@ -55,26 +56,16 @@ class LoginFragment : Fragment() {
     }
 
     fun verifyUser(email : String, password : String){
-        userVM.getAllUser()
-        val listAllUser = userVM.allUser.value!!
-        var isFound = false
-        if(listAllUser.size == 0){
-            Toast.makeText(requireContext(), "Please register first", Toast.LENGTH_SHORT).show()
-        }else{
-            for(i in listAllUser.indices){
-                if(listAllUser[i].email == email && listAllUser[i].password == password){
-                    isFound = true
-                    editor.putString("username", listAllUser[i].username)
-                    editor.putBoolean("isLogin", true)
-                    editor.apply()
-                    navigateToHome()
-                }
-            }
-            if(!isFound){
+        userVM.verifyUser(email, password).observe(viewLifecycleOwner) {
+            if(it == null){
                 Toast.makeText(requireContext(), "Email or password is incorrect", Toast.LENGTH_SHORT).show()
+            }else{
+                editor.putString("username", it.username)
+                editor.putBoolean("isLogin", true)
+                editor.apply()
+                navigateToHome()
             }
         }
-
     }
 
     fun navigateToHome(){

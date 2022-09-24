@@ -42,10 +42,10 @@ class HomeFragment : Fragment() {
 
         setRecyclerView()
         notesVM = ViewModelProvider(requireActivity()).get(NotesViewModel::class.java)
-        notesVM.getAllNotesObserver().observe(viewLifecycleOwner, {
+        notesVM.getAllNotesObserver().observe(viewLifecycleOwner) {
             notesAdapter.setNotes(it as ArrayList<Notes>)
             notesAdapter.notifyDataSetChanged()
-        })
+        }
 
         binding.btnAddNote.setOnClickListener {
             val addDialog = AddDialogFragment()

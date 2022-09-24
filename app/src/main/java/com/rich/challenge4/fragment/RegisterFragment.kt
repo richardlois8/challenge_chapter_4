@@ -48,7 +48,7 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(context, "Registration Success", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }else{
-                Toast.makeText(context, "Confirmation cPassword does not match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Confirmation Password does not match", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -58,12 +58,6 @@ class RegisterFragment : Fragment() {
     }
 
     fun saveUser(username : String,email : String,password : String){
-//        editor.putString("username",username)
-//        editor.putString("email",email)
-//        editor.putString("password",password)
-//        editor.apply()
-//        Log.e("TAG",sharedPreferences.getString("username","").toString())
-//        Log.e("TAG",sharedPreferences.getString("email","").toString())
         userVM.insertUser(User(0,username,email,password))
     }
 }
