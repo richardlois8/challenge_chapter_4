@@ -2,20 +2,16 @@ package com.rich.challenge4.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.rich.challenge4.R
 import com.rich.challenge4.database.Notes
 import com.rich.challenge4.databinding.NotesItemBinding
 
 class NotesAdapter : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
     var onDeleteclick: ((Notes) -> Unit)? = null
     var onEditClick : ((Notes) -> Unit)? = null
-    var listNotes = ArrayList<Notes>()
+    private var listNotes = ArrayList<Notes>()
 
-    class ViewHolder(var binding : NotesItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class ViewHolder(var binding : NotesItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = NotesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -3,9 +3,7 @@ package com.rich.challenge4.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.rich.challenge4.database.Notes
-import com.rich.challenge4.database.NotesDAO
 import com.rich.challenge4.database.NotesTakingDB
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async

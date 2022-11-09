@@ -3,17 +3,14 @@ package com.rich.challenge4.fragment
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.rich.challenge4.R
-import com.rich.challenge4.database.User
 import com.rich.challenge4.databinding.FragmentLoginBinding
 import com.rich.challenge4.viewmodel.UserViewModel
 
@@ -22,12 +19,15 @@ class LoginFragment : Fragment() {
     private lateinit var userVM : UserViewModel
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-    private val PREFS_NAME = "dataUser"
+
+    companion object{
+        const val PREFS_NAME = "dataUser"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
         setListener()
     }
 
-    fun setListener() {
+    private fun setListener() {
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -55,7 +55,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun verifyUser(email : String, password : String){
+    private fun verifyUser(email : String, password : String){
         userVM.verifyUser(email, password).observe(viewLifecycleOwner) {
             if(it == null){
                 Toast.makeText(requireContext(), "Email or password is incorrect", Toast.LENGTH_SHORT).show()
@@ -68,7 +68,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun navigateToHome(){
+    private fun navigateToHome(){
         findNavController().navigate(R.id.action_login_to_home)
     }
 }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.rich.challenge4.database.Notes
-import com.rich.challenge4.databinding.AddDialogBinding
 import com.rich.challenge4.databinding.UpdateDialogBinding
 import com.rich.challenge4.viewmodel.NotesViewModel
 
@@ -19,7 +18,7 @@ class UpdateDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = UpdateDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
